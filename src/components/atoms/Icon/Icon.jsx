@@ -1,9 +1,7 @@
 import React from 'react';
 
 export default function Icon(props) {
-  return (
-    <>
-      <img src={props.img} alt={`icon-${props.name}`} />
-    </>
-  );
+  const { img, name } = props;
+
+  return <img src={img} alt={`icon-${name}`} />;
 }

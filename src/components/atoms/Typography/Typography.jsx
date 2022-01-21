@@ -6,7 +6,7 @@ export default function Typography(props) {
 
   return (
     <>
-      <Text size="medium" color="#252A3C">
+      <Text size={props.size} color="#252A3C">
         {props.text}
       </Text>
     </>

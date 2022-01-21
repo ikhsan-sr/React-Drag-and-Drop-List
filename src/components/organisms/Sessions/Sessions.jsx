@@ -1,9 +1,8 @@
 import React, { useState, useRef } from 'react';
-import { Wrapper } from './Sessions.style';
-import { Typography, Icon } from '../../atoms';
-import dragIcon from '../../../assets/icons/drag.svg';
-import editIcon from '../../../assets/icons/edit.svg';
-import menuIcon from '../../../assets/icons/menu-horizontal.svg';
+import { Dragable, Wrapper } from './Sessions.style';
+import { Icon } from '../../atoms';
+import { TitleSession, Lessons } from '../../molecules';
+import { Drag } from '../../../assets/icons';
 
 export default function Sessions(props) {
   const [sessions, setSessions] = useState(props.data.sessions);
@@ -35,16 +34,17 @@ export default function Sessions(props) {
       {sessions &&
         sessions.map((item, index) => (
           <Wrapper key={index} draggable>
-            <span
-              onDragStart={(e) => handleDragStart(e, index)}
-              onDragOver={(e) => e.preventDefault()}
-              onDragEnter={(e) => handleDragEnter(e, index)}
-            >
-              <Icon img={dragIcon} name="drag" />
-            </span>
-            <Typography text={item.title} size="medium" />
-            <Icon img={editIcon} name="edit" />
-            <Icon img={menuIcon} name="option" />
+            <Dragable>
+              <span
+                onDragStart={(e) => handleDragStart(e, index)}
+                onDragOver={(e) => e.preventDefault()}
+                onDragEnter={(e) => handleDragEnter(e, index)}
+              >
+                <Icon img={Drag} name="drag" />
+              </span>
+            </Dragable>
+            <TitleSession title={item.title} />
+            <Lessons data={item.lessons} />
           </Wrapper>
         ))}
     </>
