@@ -1,9 +1,12 @@
 import React, { useState, useRef } from 'react';
-
-// Drag and Drop Level 1
+import { Wrapper } from './Sessions.style';
+import { Typography, Icon } from '../../atoms';
+import dragIcon from '../../../assets/icons/drag.svg';
+import editIcon from '../../../assets/icons/edit.svg';
+import menuIcon from '../../../assets/icons/menu-horizontal.svg';
 
 export default function Sessions(props) {
-  const [list, setList] = useState(props.data.sessions);
+  const [sessions, setSessions] = useState(props.data.sessions);
 
   const draggingItem = useRef();
   const dragOverItem = useRef();
@@ -15,31 +18,34 @@ export default function Sessions(props) {
   const handleDragEnter = (e, position) => {
     dragOverItem.current = position;
 
-    const listCopy = [...list];
-    const draggingItemContent = listCopy[draggingItem.current];
+    const sessionsCopy = [...sessions];
+    const draggingItemContent = sessionsCopy[draggingItem.current];
 
-    listCopy.splice(draggingItem.current, 1);
-    listCopy.splice(dragOverItem.current, 0, draggingItemContent);
+    sessionsCopy.splice(draggingItem.current, 1);
+    sessionsCopy.splice(dragOverItem.current, 0, draggingItemContent);
 
     draggingItem.current = dragOverItem.current;
     dragOverItem.current = null;
 
-    setList(listCopy);
+    setSessions(sessionsCopy);
   };
 
   return (
     <>
-      {list &&
-        list.map((item, index) => (
-          <h1
-            onDragStart={(e) => handleDragStart(e, index)}
-            onDragOver={(e) => e.preventDefault()}
-            onDragEnter={(e) => handleDragEnter(e, index)}
-            key={index}
-            draggable
-          >
-            {item.title}
-          </h1>
+      {sessions &&
+        sessions.map((item, index) => (
+          <Wrapper key={index} draggable>
+            <span
+              onDragStart={(e) => handleDragStart(e, index)}
+              onDragOver={(e) => e.preventDefault()}
+              onDragEnter={(e) => handleDragEnter(e, index)}
+            >
+              <Icon img={dragIcon} name="drag" />
+            </span>
+            <Typography text={item.title} size="medium" />
+            <Icon img={editIcon} name="edit" />
+            <Icon img={menuIcon} name="option" />
+          </Wrapper>
         ))}
     </>
   );
