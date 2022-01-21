@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Text = styled.span`
   color: ${props =>  props.color || '#252A3C' };
+  font-weight: ${props => props.weight || 'normal'};
   font-size: ${props => {
     switch(props.size) {
       case 'small':

@@ -15,7 +15,7 @@ export default function LessonItem(props) {
 
   return (
     <Lesson>
-      <IconButton img={Camera} />
+      <IconButton img={Camera} bg="#F6F8FC" />
       <Typography text={title} size="small" />
     </Lesson>
   );
