@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { Dragable, Wrapper } from './Sessions.style';
 import { Icon } from '../../atoms';
-import { TitleSession, Lessons } from '../../molecules';
+import { TitleSession, Lessons, Notice } from '../../molecules';
 import { Drag } from '../../../assets/icons';
 
 export default function Sessions(props) {
@@ -31,6 +31,8 @@ export default function Sessions(props) {
 
   return (
     <>
+      {props.data.notice && <Notice data={props.data.notice} />}
+
       {sessions &&
         sessions.map((item, index) => (
           <Wrapper key={index} draggable>

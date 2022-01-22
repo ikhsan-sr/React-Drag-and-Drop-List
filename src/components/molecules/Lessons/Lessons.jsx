@@ -44,6 +44,7 @@ export default function Lessons(props) {
             <LessonItem data={item} />
           </Wrapper>
         ))}
+      <div onClick={() => alert('Add Lesson')}>Add Lesson Material</div>
     </>
   );
 }
