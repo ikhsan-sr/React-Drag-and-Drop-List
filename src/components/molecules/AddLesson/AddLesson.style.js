@@ -18,12 +18,13 @@ export const FadingBackground = styled(BaseModalBackground)`
 `;
 
 export const TitleModal = styled.div`
-  padding: 1rem;
+  padding: 2rem 1rem 1rem 1rem;
   text-align: center;
+  border-bottom: 1px solid #DFDFDF;
 `;
 
 export const Form = styled.form`
-  padding: 1rem;
+  padding: 1rem 4rem;
 `;
 
 export const Input = styled.input.attrs(props => ({
@@ -35,7 +36,7 @@ export const Input = styled.input.attrs(props => ({
 }))`
   color: palevioletred;
   font-size: 1em;
-  border: 2px solid palevioletred;
+  border: 1px solid black;
   border-radius: 8px;
 
   /* here we use the dynamically computed prop */
