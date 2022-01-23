@@ -2,10 +2,12 @@ import React, { useState, useRef } from 'react';
 import LessonItem from '../LessonItem/LessonItem';
 import { Icon } from '../../atoms';
 import { Drag } from '../../../assets/icons';
-import { Wrapper } from './Lessons.style';
+import { Wrapper, TitleWrapper } from './Lessons.style';
+import { AddLesson } from '..';
 
 export default function Lessons(props) {
   const [lessons, setLessons] = useState(props.data);
+  const [openModal, setOpenModal] = useState(false);
 
   const draggingItem = useRef();
   const dragOverItem = useRef();
@@ -29,22 +31,34 @@ export default function Lessons(props) {
     setLessons(lessonsCopy);
   };
 
+  const addLesson = (lesson) => {
+    const newLessons = [...lessons];
+
+    newLessons.push(lesson);
+    setLessons(newLessons);
+
+    console.log('post');
+    console.log(lesson);
+  };
+
   return (
     <>
       {lessons &&
         lessons.map((item, index) => (
           <Wrapper key={index} draggable>
-            <span
+            <div
               onDragStart={(e) => handleDragStart(e, index)}
               onDragOver={(e) => e.preventDefault()}
               onDragEnter={(e) => handleDragEnter(e, index)}
             >
               <Icon img={Drag} name="drag" />
-            </span>
-            <LessonItem data={item} />
+            </div>
+            <TitleWrapper>
+              <LessonItem data={item} />
+            </TitleWrapper>
           </Wrapper>
         ))}
-      <div onClick={() => alert('Add Lesson')}>Add Lesson Material</div>
+      <AddLesson post={addLesson} />
     </>
   );
 }

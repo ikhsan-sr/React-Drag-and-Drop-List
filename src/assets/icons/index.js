@@ -8,5 +8,6 @@ import MenuHorizontal from './menu-horizontal.svg';
 import MenuVertical from './menu-vertical.svg';
 import Back from './back.svg';
 import Eye from './eye.svg';
+import Add from './add.svg';
 
-export { Camera, Clock, Download, Drag, Edit, Location, MenuHorizontal, MenuVertical, Back, Eye };
+export { Camera, Clock, Download, Drag, Edit, Location, MenuHorizontal, MenuVertical, Back, Eye, Add };

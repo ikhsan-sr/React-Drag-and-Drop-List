@@ -1,8 +1,8 @@
 import React, { useState, useRef } from 'react';
-import { Dragable, Wrapper } from './Sessions.style';
-import { Icon } from '../../atoms';
+import { Dragable, Wrapper, TitleWrapper } from './Sessions.style';
+import { Icon, Button } from '../../atoms';
 import { TitleSession, Lessons, Notice } from '../../molecules';
-import { Drag } from '../../../assets/icons';
+import { Drag, Add } from '../../../assets/icons';
 
 export default function Sessions(props) {
   const [sessions, setSessions] = useState(props.data.sessions);
@@ -32,23 +32,30 @@ export default function Sessions(props) {
   return (
     <>
       {props.data.notice && <Notice data={props.data.notice} />}
-
       {sessions &&
         sessions.map((item, index) => (
           <Wrapper key={index} draggable>
-            <Dragable>
-              <span
-                onDragStart={(e) => handleDragStart(e, index)}
-                onDragOver={(e) => e.preventDefault()}
-                onDragEnter={(e) => handleDragEnter(e, index)}
-              >
-                <Icon img={Drag} name="drag" />
-              </span>
-            </Dragable>
-            <TitleSession title={item.title} />
+            <TitleWrapper>
+              <Dragable>
+                <span
+                  onDragStart={(e) => handleDragStart(e, index)}
+                  onDragOver={(e) => e.preventDefault()}
+                  onDragEnter={(e) => handleDragEnter(e, index)}
+                >
+                  <Icon img={Drag} name="drag" />
+                </span>
+              </Dragable>
+              <TitleSession title={item.title} />
+            </TitleWrapper>
             <Lessons data={item.lessons} />
           </Wrapper>
         ))}
+      <Button
+        text="Add Session"
+        color="#7800EF"
+        variant="contained"
+        icon={Add}
+      />
     </>
   );
 }
