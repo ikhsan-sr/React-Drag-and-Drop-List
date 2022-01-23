@@ -34,6 +34,7 @@ export default function Sessions(props) {
 
     newSessions.push({
       title: `Sessions ${newSessions.length + 1}`,
+      lessons: [],
     });
 
     setSessions(newSessions);

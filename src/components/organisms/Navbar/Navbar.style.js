@@ -6,10 +6,17 @@ export const Wrapper = styled.div`
   padding: 2rem 1rem;
   filter: drop-shadow(0 4px 34px rgba(39, 26, 73, 0.05));
   background-color: #FFFFFF;
+  position: fixed;
 `;
 
 export const BorderRight = styled.span`
   border-right: solid 1px #BCC0D0;
   padding-right: 1rem;
   margin-right: 1rem;
+`;
+
+export const Container = styled.div`
+  max-width: 1200px;
+  margin: auto;
+  height: 100%;
 `;

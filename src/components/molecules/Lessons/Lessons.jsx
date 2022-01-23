@@ -7,7 +7,6 @@ import { AddLesson } from '..';
 
 export default function Lessons(props) {
   const [lessons, setLessons] = useState(props.data);
-  const [openModal, setOpenModal] = useState(false);
 
   const draggingItem = useRef();
   const dragOverItem = useRef();
@@ -36,13 +35,14 @@ export default function Lessons(props) {
 
     newLessons.push(lesson);
     setLessons(newLessons);
-
-    console.log('post');
-    console.log(lesson);
   };
 
   return (
     <>
+      {lessons && lessons.length < 1 && (
+        <p style={{ textAlign: 'center' }}>Schedule is still empty</p>
+      )}
+
       {lessons &&
         lessons.map((item, index) => (
           <Wrapper key={index} draggable>

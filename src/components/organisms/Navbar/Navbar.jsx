@@ -1,8 +1,8 @@
 import React from 'react';
-import { Wrapper, BorderRight } from './Navbar.style';
+import { Wrapper, BorderRight, Container } from './Navbar.style';
 import { Typography, IconButton } from '../../atoms';
 import { Back } from '../../../assets/icons';
-import { Container } from '../../../Global.style';
+// import { Container } from '../../../Global.style';
 
 export default function Navbar() {
   return (
