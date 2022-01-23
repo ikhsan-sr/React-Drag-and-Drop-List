@@ -29,6 +29,16 @@ export default function Sessions(props) {
     setSessions(sessionsCopy);
   };
 
+  const handleAdd = () => {
+    const newSessions = [...sessions];
+
+    newSessions.push({
+      title: `Sessions ${newSessions.length + 1}`,
+    });
+
+    setSessions(newSessions);
+  };
+
   return (
     <>
       {props.data.notice && <Notice data={props.data.notice} />}
@@ -50,12 +60,15 @@ export default function Sessions(props) {
             <Lessons data={item.lessons} />
           </Wrapper>
         ))}
-      <Button
-        text="Add Session"
-        color="#7800EF"
-        variant="contained"
-        icon={Add}
-      />
+      <span onClick={handleAdd}>
+        <Button
+          text="Add Session"
+          color="#7800EF"
+          variant="contained"
+          icon={Add}
+          onClick={() => alert('Hello')}
+        />
+      </span>
     </>
   );
 }

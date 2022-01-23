@@ -46,5 +46,5 @@ export const Input = styled.input.attrs(props => ({
 
 export const CTA = styled.div`
   padding: 1rem;
-  float: left;
-`;
+  bottom: 0;
+  `;

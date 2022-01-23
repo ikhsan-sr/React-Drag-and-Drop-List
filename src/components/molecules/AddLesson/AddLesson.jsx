@@ -73,10 +73,7 @@ export default function AddLesson(props) {
             onChange={handleChange}
           />
           <CTA>
-            <input type="submit" />
-
-            <button onClick={toggleModal}>Save</button>
-            <button onClick={toggleModal}>Close me</button>
+            <button type="submit">Save</button>
           </CTA>
         </Form>
       </StyledModal>
