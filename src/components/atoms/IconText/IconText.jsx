@@ -6,11 +6,11 @@ export default function IconText(props) {
   const { icon, text } = props;
 
   return (
-    <span>
+    <div>
       <Wrapper>
         <Icon img={icon} name={text} />
         <Typography text={text} />
       </Wrapper>
-    </span>
+    </div>
   );
 }

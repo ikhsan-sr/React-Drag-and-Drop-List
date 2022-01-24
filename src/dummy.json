@@ -22,6 +22,14 @@
           "time1": "24 Oktober 2021, 16.30",
           "time2": "06.30 Min",
           "isDownloadable": true
+        },
+        {
+          "title": "Judul Video 3",
+          "isOnsite": true,
+          "isRequired": true,
+          "time1": "24 Oktober 2021, 16.30",
+          "time2": "06.30 Min",
+          "isDownloadable": true
         }
       ]
     },

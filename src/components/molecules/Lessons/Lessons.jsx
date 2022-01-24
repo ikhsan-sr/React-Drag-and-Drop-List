@@ -3,6 +3,7 @@ import LessonItem from '../LessonItem/LessonItem';
 import { Icon } from '../../atoms';
 import { Drag } from '../../../assets/icons';
 import { Wrapper, TitleWrapper } from './Lessons.style';
+import { Dragable } from '../../organisms/Sessions/Sessions.style';
 import { AddLesson } from '..';
 
 export default function Lessons(props) {
@@ -46,13 +47,13 @@ export default function Lessons(props) {
       {lessons &&
         lessons.map((item, index) => (
           <Wrapper key={index} draggable>
-            <div
+            <Dragable
               onDragStart={(e) => handleDragStart(e, index)}
               onDragOver={(e) => e.preventDefault()}
               onDragEnter={(e) => handleDragEnter(e, index)}
             >
               <Icon img={Drag} name="drag" />
-            </div>
+            </Dragable>
             <TitleWrapper>
               <LessonItem data={item} />
             </TitleWrapper>

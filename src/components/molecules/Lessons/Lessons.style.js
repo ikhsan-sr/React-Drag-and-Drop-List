@@ -7,6 +7,7 @@ export const Wrapper = styled.div`
   border-radius: 8px;
   display: flex;
   gap: 10px;
+  transition: transform 1s;
 `;
 
 export const TitleWrapper = styled.div`

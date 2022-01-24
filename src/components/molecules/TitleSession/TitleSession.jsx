@@ -1,20 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Typography, Icon } from '../../atoms';
 import { Edit, MenuHorizontal } from '../../../assets/icons';
-import { Wrapper, SpaceBetween, Title, Input } from './TitleSession.style.js';
+import {
+  Wrapper,
+  SpaceBetween,
+  Title,
+  Input,
+  SaveIcon,
+  EditIcon,
+  Option,
+} from './TitleSession.style.js';
 import Checkmark from '../../../assets/icons/checkmark.png';
 
 export default function TitleSession(props) {
-  const [title, setTitle] = useState(props.title);
+  const [newTitle, setNewTitle] = useState(props.title);
   const [editTitle, setEditTitle] = useState(false);
+  const inputElement = useRef(null);
 
   const handleSave = () => {
+    props.edit(props.index, newTitle);
     setEditTitle(false);
   };
 
-  const handleChange = (value) => {
-    setTitle(value);
+  const handleEnter = (e) => {
+    if (e.key === 'Enter') {
+      handleSave();
+    }
   };
+
+  const handleChange = (value) => {
+    setNewTitle(value);
+  };
+
+  const handleEdit = () => {
+    setEditTitle(true);
+  };
+
+  useEffect(() => {
+    if (inputElement.current) {
+      inputElement.current.focus();
+    }
+  }, [inputElement]);
 
   return (
     <Wrapper>
@@ -22,10 +48,10 @@ export default function TitleSession(props) {
         <Title>
           {!editTitle && (
             <>
-              <Typography text={title} size="medium" />
-              <div onClick={() => setEditTitle(true)}>
+              <Typography text={props.title} size="medium" />
+              <EditIcon onClick={handleEdit}>
                 <Icon img={Edit} name="edit" />
-              </div>
+              </EditIcon>
             </>
           )}
           {editTitle && (
@@ -33,22 +59,18 @@ export default function TitleSession(props) {
               <Input
                 placeholder="Title Session"
                 name="time1"
-                defaultValue={title}
+                defaultValue={props.title}
                 onChange={(e) => handleChange(e.target.value)}
+                ref={inputElement}
+                onKeyPress={handleEnter}
               />
-              <img
-                src={Checkmark}
-                alt=""
-                width={22}
-                height={22}
-                onClick={handleSave}
-              />
+              <SaveIcon src={Checkmark} alt="save" onClick={handleSave} />
             </>
           )}
         </Title>
-        <div>
+        <Option>
           <Icon img={MenuHorizontal} name="option" />
-        </div>
+        </Option>
       </SpaceBetween>
     </Wrapper>
   );

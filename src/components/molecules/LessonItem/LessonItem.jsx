@@ -1,23 +1,31 @@
 import React from 'react';
-import { Lesson, Wrapper, LessonName } from './LessonItem.style';
 import { Typography, IconButton, Icon, IconText } from '../../atoms';
 import {
-  Drag,
+  Lesson,
+  Wrapper,
+  LessonName,
+  Detail,
+  Option,
+  LinkDownload,
+} from './LessonItem.style';
+import {
   Camera,
   Location,
   Clock,
   Download,
+  Dot,
   MenuVertical,
 } from '../../../assets/icons';
 
 export default function LessonItem(props) {
-  const { title, isRequired, time1, time2, isDownloadable } = props.data;
+  const { title, isRequired, time1, time2, isDownloadable, isOnsite } =
+    props.data;
 
   return (
     <Wrapper>
       <Lesson>
         <LessonName>
-          <IconButton img={Camera} bg="#F6F8FC" />
+          <IconButton img={isOnsite ? Location : Camera} bg="#F6F8FC" />
           <Typography text={title} size="small" />
           {isRequired && (
             <Typography
@@ -28,11 +36,20 @@ export default function LessonItem(props) {
             />
           )}
         </LessonName>
-        <div>
+        <Detail>
           <IconText icon={Clock} text={time1} />
+          <Icon img={Dot} />
           <IconText icon={Clock} text={time2} />
-          <IconText icon={Download} text="Downloadable" />
-        </div>
+          <Icon img={Dot} />
+          {isDownloadable && (
+            <LinkDownload>
+              <IconText icon={Download} text="Downloadable" />
+            </LinkDownload>
+          )}
+          <Option>
+            <Icon img={MenuVertical} />
+          </Option>
+        </Detail>
       </Lesson>
     </Wrapper>
   );

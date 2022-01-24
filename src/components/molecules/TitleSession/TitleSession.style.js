@@ -33,3 +33,23 @@ export const Input = styled.input.attrs(props => ({
     outline: none;
   }
 `;
+
+export const SaveIcon = styled.img`
+  width: 22px;
+  height: 22px;
+  margin-top: 3px;
+  cursor: pointer;
+`;
+
+export const EditIcon = styled.div`
+  margin-top: 5px;
+  cursor: pointer;
+`;
+
+export const Option = styled.div`
+  background-color: #F6F8FC;
+  border-radius: 8px;
+  width: 32px;
+  text-align: center;
+  cursor: pointer;
+`;

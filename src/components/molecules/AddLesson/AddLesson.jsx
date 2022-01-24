@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { ModalProvider } from 'styled-react-modal';
+import { Typography } from '../../atoms';
+import { Add } from '../../../assets/icons';
 import {
   StyledModal,
   FadingBackground,
@@ -7,8 +9,12 @@ import {
   Form,
   Input,
   CTA,
+  IconPlus,
+  AddNewLesson,
+  IconAdd,
+  BtnText,
+  Save,
 } from './AddLesson.style';
-import { Typography } from '../../atoms';
 
 export default function AddLesson(props) {
   const [inputs, setInputs] = useState({});
@@ -42,11 +48,19 @@ export default function AddLesson(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
     props.post(inputs);
+    toggleModal();
   };
 
   return (
     <ModalProvider backgroundComponent={FadingBackground}>
-      <div onClick={toggleModal}>Add Lesson Material</div>
+      <AddNewLesson onClick={toggleModal}>
+        <IconPlus>
+          <IconAdd src={Add} alt="add" />
+        </IconPlus>
+        <BtnText>
+          <Typography text="Add Lesson Material" size="small" />
+        </BtnText>
+      </AddNewLesson>
       <StyledModal
         isOpen={isOpen}
         afterOpen={afterOpen}
@@ -72,9 +86,7 @@ export default function AddLesson(props) {
             name="downloadLink"
             onChange={handleChange}
           />
-          <CTA>
-            <button type="submit">Save</button>
-          </CTA>
+          <Save type="submit">Save</Save>
         </Form>
       </StyledModal>
     </ModalProvider>

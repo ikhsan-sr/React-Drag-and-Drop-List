@@ -40,6 +40,14 @@ export default function Sessions(props) {
     setSessions(newSessions);
   };
 
+  const editTitle = (index, value) => {
+    const newSessions = [...sessions];
+
+    newSessions[index].title = value;
+
+    setSessions(newSessions);
+  };
+
   return (
     <>
       {props.data.notice && <Notice data={props.data.notice} />}
@@ -56,18 +64,18 @@ export default function Sessions(props) {
                   <Icon img={Drag} name="drag" />
                 </span>
               </Dragable>
-              <TitleSession title={item.title} />
+              <TitleSession index={index} title={item.title} edit={editTitle} />
             </TitleWrapper>
             <Lessons data={item.lessons} />
           </Wrapper>
         ))}
-      <span onClick={handleAdd}>
+      <span onClick={handleAdd} style={{ float: 'right' }}>
         <Button
           text="Add Session"
-          color="#7800EF"
+          bg="#7800EF"
+          color="#FFFFFF"
           variant="contained"
           icon={Add}
-          onClick={() => alert('Hello')}
         />
       </span>
     </>
