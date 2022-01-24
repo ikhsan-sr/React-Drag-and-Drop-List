@@ -13,3 +13,23 @@ export const Title = styled.div`
   display: flex;
   gap: 10px;
 `;
+
+export const Input = styled.input.attrs(props => ({
+  // we can define static props
+  type: "text",
+
+  // or we can define dynamic ones
+  size: props.size || "6px",
+}))`
+  color: ; #252A3C;
+  font-size: 1em;
+  border: 1px solid #7800EF;
+  border-radius: 8px;
+  
+  /* here we use the dynamically computed prop */
+  padding: ${props => props.size};
+  
+  &:focus {
+    outline: none;
+  }
+`;

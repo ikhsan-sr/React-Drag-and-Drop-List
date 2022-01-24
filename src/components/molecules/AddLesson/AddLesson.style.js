@@ -34,7 +34,7 @@ export const Input = styled.input.attrs(props => ({
   // or we can define dynamic ones
   size: props.size || "12px",
 }))`
-  color: palevioletred;
+  color: #7800EF;
   font-size: 1em;
   border: 1px solid black;
   border-radius: 8px;
