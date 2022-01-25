@@ -10,11 +10,11 @@ export default function Sessions(props) {
   const draggingItem = useRef();
   const dragOverItem = useRef();
 
-  const handleDragStart = (e, position) => {
+  const startDragSession = (e, position) => {
     draggingItem.current = position;
   };
 
-  const handleDragEnter = (e, position) => {
+  const enterDragSession = (e, position) => {
     if (!position) {
       return false;
     } else {
@@ -31,6 +31,13 @@ export default function Sessions(props) {
 
       setSessions(sessionsCopy);
     }
+  };
+
+  const refreshLessons = (index, lessons) => {
+    const sessionsCopy = [...sessions];
+    sessionsCopy[index].lessons = lessons;
+
+    setSessions(sessionsCopy);
   };
 
   const handleAdd = () => {
@@ -61,16 +68,20 @@ export default function Sessions(props) {
             <TitleWrapper>
               <Dragable>
                 <span
-                  onDragStart={(e) => handleDragStart(e, index)}
+                  onDragStart={(e) => startDragSession(e, index)}
                   onDragOver={(e) => e.preventDefault()}
-                  onDragEnter={(e) => handleDragEnter(e, index)}
+                  onDragEnter={(e) => enterDragSession(e, index)}
                 >
                   <Icon img={Drag} name="drag" />
                 </span>
               </Dragable>
               <TitleSession index={index} title={item.title} edit={editTitle} />
             </TitleWrapper>
-            <Lessons data={item.lessons} />
+            <Lessons
+              data={item.lessons}
+              index={index}
+              refreshLessons={refreshLessons}
+            />
           </Wrapper>
         ))}
       <span onClick={handleAdd} style={{ float: 'right' }}>

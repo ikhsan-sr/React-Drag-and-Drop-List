@@ -31,6 +31,8 @@ export default function Lessons(props) {
       draggingItem.current = dragOverItem.current;
       dragOverItem.current = null;
 
+      props.refreshLessons(props.index, lessonsCopy);
+      // console.log(lessonsCopy);
       setLessons(lessonsCopy);
     }
   };
@@ -42,18 +44,16 @@ export default function Lessons(props) {
     setLessons(newLessons);
   };
 
-  useEffect(() => {
-    console.log('CHANGE');
-  }, [props.data]);
+  useEffect(() => {}, [props.data]);
 
   return (
     <>
-      {lessons && lessons.length < 1 && (
+      {props.data && props.data.length < 1 && (
         <p style={{ textAlign: 'center' }}>Schedule is still empty</p>
       )}
 
-      {lessons &&
-        lessons.map((item, index) => (
+      {props.data &&
+        props.data.map((item, index) => (
           <Wrapper key={index} draggable>
             <Dragable
               onDragStart={(e) => handleDragStart(e, index)}
