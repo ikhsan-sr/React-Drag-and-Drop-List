@@ -15,18 +15,22 @@ export default function Sessions(props) {
   };
 
   const handleDragEnter = (e, position) => {
-    dragOverItem.current = position;
+    if (!position) {
+      return false;
+    } else {
+      dragOverItem.current = position;
 
-    const sessionsCopy = [...sessions];
-    const draggingItemContent = sessionsCopy[draggingItem.current];
+      const sessionsCopy = [...sessions];
+      const draggingItemContent = sessionsCopy[draggingItem.current];
 
-    sessionsCopy.splice(draggingItem.current, 1);
-    sessionsCopy.splice(dragOverItem.current, 0, draggingItemContent);
+      sessionsCopy.splice(draggingItem.current, 1);
+      sessionsCopy.splice(dragOverItem.current, 0, draggingItemContent);
 
-    draggingItem.current = dragOverItem.current;
-    dragOverItem.current = null;
+      draggingItem.current = dragOverItem.current;
+      dragOverItem.current = null;
 
-    setSessions(sessionsCopy);
+      setSessions(sessionsCopy);
+    }
   };
 
   const handleAdd = () => {

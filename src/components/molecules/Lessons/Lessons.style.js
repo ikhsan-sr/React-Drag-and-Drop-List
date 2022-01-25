@@ -11,7 +11,6 @@ export const Wrapper = styled.div`
 `;
 
 export const TitleWrapper = styled.div`
-  background-color: red;
   width: 100%;
   display: flex;
   justify-content: space-between;

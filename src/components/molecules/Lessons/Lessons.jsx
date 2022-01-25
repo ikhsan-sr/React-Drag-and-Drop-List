@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import LessonItem from '../LessonItem/LessonItem';
 import { Icon } from '../../atoms';
 import { Drag } from '../../../assets/icons';
@@ -17,18 +17,22 @@ export default function Lessons(props) {
   };
 
   const handleDragEnter = (e, position) => {
-    dragOverItem.current = position;
+    if (!position) {
+      return false;
+    } else {
+      dragOverItem.current = position;
 
-    const lessonsCopy = [...lessons];
-    const draggingItemContent = lessonsCopy[draggingItem.current];
+      const lessonsCopy = [...lessons];
+      const draggingItemContent = lessonsCopy[draggingItem.current];
 
-    lessonsCopy.splice(draggingItem.current, 1);
-    lessonsCopy.splice(dragOverItem.current, 0, draggingItemContent);
+      lessonsCopy.splice(draggingItem.current, 1);
+      lessonsCopy.splice(dragOverItem.current, 0, draggingItemContent);
 
-    draggingItem.current = dragOverItem.current;
-    dragOverItem.current = null;
+      draggingItem.current = dragOverItem.current;
+      dragOverItem.current = null;
 
-    setLessons(lessonsCopy);
+      setLessons(lessonsCopy);
+    }
   };
 
   const addLesson = (lesson) => {
@@ -37,6 +41,10 @@ export default function Lessons(props) {
     newLessons.push(lesson);
     setLessons(newLessons);
   };
+
+  useEffect(() => {
+    console.log('CHANGE');
+  }, [props.data]);
 
   return (
     <>
