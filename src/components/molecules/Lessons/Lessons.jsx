@@ -32,7 +32,6 @@ export default function Lessons(props) {
       dragOverItem.current = null;
 
       props.refreshLessons(props.index, lessonsCopy);
-      // console.log(lessonsCopy);
       setLessons(lessonsCopy);
     }
   };
