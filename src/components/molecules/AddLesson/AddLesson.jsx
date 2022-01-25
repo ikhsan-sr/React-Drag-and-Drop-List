@@ -17,7 +17,7 @@ import {
 } from './AddLesson.style';
 
 export default function AddLesson(props) {
-  const [inputs, setInputs] = useState({});
+  const [inputs, setInputs] = useState({ isDownloadable: true });
   const [isOpen, setIsOpen] = useState(false);
   const [opacity, setOpacity] = useState(0);
 

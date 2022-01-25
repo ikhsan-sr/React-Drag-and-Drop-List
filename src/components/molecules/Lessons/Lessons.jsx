@@ -8,7 +8,6 @@ import { AddLesson } from '..';
 
 export default function Lessons(props) {
   const [lessons, setLessons] = useState(props.data);
-
   const draggingItem = useRef();
   const dragOverItem = useRef();
 
@@ -37,13 +36,8 @@ export default function Lessons(props) {
   };
 
   const addLesson = (lesson) => {
-    const newLessons = [...lessons];
-
-    newLessons.push(lesson);
-    setLessons(newLessons);
+    props.addLesson(props.index, lesson);
   };
-
-  useEffect(() => {}, [props.data]);
 
   return (
     <>

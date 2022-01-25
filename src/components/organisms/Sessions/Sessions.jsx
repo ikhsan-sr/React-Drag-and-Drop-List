@@ -6,7 +6,6 @@ import { Drag, Add } from '../../../assets/icons';
 
 export default function Sessions(props) {
   const [sessions, setSessions] = useState(props.data.sessions);
-
   const draggingItem = useRef();
   const dragOverItem = useRef();
 
@@ -20,27 +19,27 @@ export default function Sessions(props) {
     } else {
       dragOverItem.current = position;
 
-      const sessionsCopy = [...sessions];
-      const draggingItemContent = sessionsCopy[draggingItem.current];
+      const newSessions = [...sessions];
+      const draggingItemContent = newSessions[draggingItem.current];
 
-      sessionsCopy.splice(draggingItem.current, 1);
-      sessionsCopy.splice(dragOverItem.current, 0, draggingItemContent);
+      newSessions.splice(draggingItem.current, 1);
+      newSessions.splice(dragOverItem.current, 0, draggingItemContent);
 
       draggingItem.current = dragOverItem.current;
       dragOverItem.current = null;
 
-      setSessions(sessionsCopy);
+      setSessions(newSessions);
     }
   };
 
   const refreshLessons = (index, lessons) => {
-    const sessionsCopy = [...sessions];
-    sessionsCopy[index].lessons = lessons;
+    const newSessions = [...sessions];
+    newSessions[index].lessons = lessons;
 
-    setSessions(sessionsCopy);
+    setSessions(newSessions);
   };
 
-  const handleAdd = () => {
+  const addSession = () => {
     const newSessions = [...sessions];
 
     newSessions.push({
@@ -51,9 +50,15 @@ export default function Sessions(props) {
     setSessions(newSessions);
   };
 
+  const addLesson = (index, lesson) => {
+    const newSessions = [...sessions];
+    newSessions[index].lessons.push(lesson);
+
+    setSessions(newSessions);
+  };
+
   const editTitle = (index, value) => {
     const newSessions = [...sessions];
-
     newSessions[index].title = value;
 
     setSessions(newSessions);
@@ -81,10 +86,11 @@ export default function Sessions(props) {
               data={item.lessons}
               index={index}
               refreshLessons={refreshLessons}
+              addLesson={addLesson}
             />
           </Wrapper>
         ))}
-      <span onClick={handleAdd} style={{ float: 'right' }}>
+      <span onClick={addSession} style={{ float: 'right' }}>
         <Button
           text="Add Session"
           bg="#7800EF"
